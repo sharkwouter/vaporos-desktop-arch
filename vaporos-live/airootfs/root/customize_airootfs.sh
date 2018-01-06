@@ -20,14 +20,20 @@ sed -i 's/#\(HandleHibernateKey=\)hibernate/\1ignore/' /etc/systemd/logind.conf
 sed -i 's/#\(HandleLidSwitch=\)suspend/\1ignore/' /etc/systemd/logind.conf
 
 systemctl enable pacman-init.service choose-mirror.service
-systemctl set-default multi-user.target
 
 #VaporOS specific stuff
-systemctl enable gdm
-systemctl enable NetworkManager
 
+#Create live user
 useradd -m -s /bin/bash liveuser
 
+#Start gdm automatically
+ln -s /usr/lib/systemd/system/gdm.service ~/archlive/airootfs/etc/systemd/system/display-manager.service
+systemctl set-default graphical.target
+
+#Gnome autologin
 echo "[daemon]
 AutomaticLogin=liveuser
-AutomaticLoginEnable=True" >> /etc/gdm/custom.conf
+AutomaticLoginEnable=True" > /etc/gdm/custom.conf
+
+#Other services
+systemctl enable NetworkManager
