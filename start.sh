@@ -12,4 +12,4 @@ mkdir -p ${work_dir}/${output_dir}
 docker build -f ${work_dir}/${dockerfile} -t vaporos-builder ${work_dir}
 
 #Run container
-exec docker run --privileged --rm -ti -v ${work_dir}/${output_dir}:/root/archlive/out -h vaporos-builder vaporos-builder ./build.sh -v
+exec docker run --privileged --rm -ti -v ${work_dir}/${output_dir}:/root/vaporos-live/out -h vaporos-builder vaporos-builder ./build.sh -v

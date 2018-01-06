@@ -6,10 +6,10 @@ MAINTAINER Wouter Wijsman
 
 #Install archiso
 RUN yes | pacman -Sy archiso
-RUN mkdir -p /root/archlive/out
+RUN mkdir -p /root/vaporos-live/out
 
 #set working dir, you'll have to mount something yourself here
-WORKDIR /root/archlive
+WORKDIR /root/vaporos-live
 
 #Copy archiso files from this git repo
-ADD archlive /root/archlive
+ADD archlive /root/vaporos-live
