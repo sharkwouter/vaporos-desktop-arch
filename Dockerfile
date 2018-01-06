@@ -12,4 +12,4 @@ RUN mkdir -p /root/vaporos-live/out
 WORKDIR /root/vaporos-live
 
 #Copy archiso files from this git repo
-ADD archlive /root/vaporos-live
+ADD vaporos-live /root/vaporos-live
