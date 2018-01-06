@@ -7,6 +7,7 @@ BUILDDIR="$DIR/archlive"
 
 #Create archlive directory if it doesn't exist
 mkdir -p $BUILDDIR
+mkdir -p $BUILDDIR/out #ISOs will be build here
 
 #Build the docker container
 cd $DOCKERFILE
