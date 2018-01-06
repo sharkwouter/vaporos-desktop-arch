@@ -28,12 +28,11 @@ sed -i '1s/^/auth sufficient pam_succeed_if.so user ingroup nopasswdlogin\n/' /e
 groupadd nopasswdlogin
 
 #Create live user
-useradd -m -s /bin/bash -G nopasswdlogin liveuser
+useradd -m -s /bin/bash -G users,games,uucp,nopasswdlogin liveuser
 
 #Start gdm automatically
 systemctl set-default graphical.target
 systemctl enable gdm
-
 
 #Gnome autologin
 echo "[daemon]
@@ -43,5 +42,6 @@ AutomaticLoginEnable=True" > /etc/gdm/custom.conf
 #Set hostname
 echo "vaporos-live" > /etc/hostname
 
-#Other services
+#Use NetworkManager instead of dhcpd
+rm /etc/udev/rules.d/81-dhcpcd.rules
 systemctl enable NetworkManager
