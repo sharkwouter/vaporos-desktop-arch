@@ -40,7 +40,8 @@ echo "[daemon]
 AutomaticLogin=liveuser
 AutomaticLoginEnable=True" > /etc/gdm/custom.conf
 
-
+#Set hostname
+echo "vaporos-live" > /etc/hostname
 
 #Other services
 systemctl enable NetworkManager
