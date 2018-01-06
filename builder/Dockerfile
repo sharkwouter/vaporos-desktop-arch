@@ -6,7 +6,7 @@ MAINTAINER Wouter Wijsman
 
 #Install archiso
 RUN yes | pacman -Sy archiso
-RUN mkdir ~/archlive
+RUN mkdir /root/archlive
 
 #set working dir, you'll have to mount something yourself here
-WORKDIR ~/archlive
+WORKDIR /root/archlive
