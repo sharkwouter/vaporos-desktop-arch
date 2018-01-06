@@ -1,18 +1,15 @@
 #!/bin/bash
 
 #Get the directory of this script
-DIR="$(realpath $0|rev|cut -d '/' -f2-|rev)"
-DOCKERFILE="$DIR/builder"
-BUILDDIR="$DIR/archlive"
+work_dir="$(realpath $0|rev|cut -d '/' -f2-|rev)"
+dockerfile="Dockerfile"
+build_dir="archlive"
 
 #Create archlive directory if it doesn't exist
-mkdir -p $BUILDDIR
-mkdir -p $BUILDDIR/out #ISOs will be build here
+mkdir -p ${work_dir}/out #ISOs will be build here
 
 #Build the docker container
-cd $DOCKERFILE
-docker build -t vaporos-builder .
-cd $DIR
+docker build -f ${work_dir}/${dockerfile} -t vaporos-builder .
 
 #Run container
-docker run --privileged -t -i -v $BUILDDIR:/root/archlive -h vaporos-builder vaporos-builder /bin/bash
+#docker run --privileged --rm -ti -v ${work_dir}/${build_dir}:/root/archlive -h vaporos-builder vaporos-builder /bin/bash
