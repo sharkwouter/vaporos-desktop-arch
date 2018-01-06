@@ -23,17 +23,24 @@ systemctl enable pacman-init.service choose-mirror.service
 
 #VaporOS specific stuff
 
+#Create group for logging in without password
+sed -i '1s/^/auth sufficient pam_succeed_if.so user ingroup nopasswdlogin\n/' /etc/pam.d/gdm-password
+groupadd nopasswdlogin
+
 #Create live user
-useradd -m -s /bin/bash liveuser
+useradd -m -s /bin/bash -G nopasswdlogin liveuser
 
 #Start gdm automatically
-ln -s /usr/lib/systemd/system/gdm.service ~/archlive/airootfs/etc/systemd/system/display-manager.service
 systemctl set-default graphical.target
+systemctl enable gdm
+
 
 #Gnome autologin
 echo "[daemon]
 AutomaticLogin=liveuser
 AutomaticLoginEnable=True" > /etc/gdm/custom.conf
+
+
 
 #Other services
 systemctl enable NetworkManager
