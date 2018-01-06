@@ -14,4 +14,4 @@ docker build -t vaporos-builder .
 cd $DIR
 
 #Run container
-docker run -t -i -v $BUILDDIR:/root/archlive vaporos-builder /bin/bash
+docker run -t -i -v $BUILDDIR:/root/archlive -h vaporos-builder vaporos-builder /bin/bash
