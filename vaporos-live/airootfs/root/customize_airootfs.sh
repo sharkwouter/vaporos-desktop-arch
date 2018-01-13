@@ -45,3 +45,6 @@ echo "vaporos-live" > /etc/hostname
 #Use NetworkManager instead of dhcpd
 rm /etc/udev/rules.d/81-dhcpcd.rules
 systemctl enable NetworkManager
+
+#Sudo config
+echo "liveuser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/iveuser-nopasswd
