@@ -8,3 +8,6 @@ networkmanager-openvpn
 deluge
 gimp
 gparted
+flatpak
+flatpak-builder
+gnome-software
